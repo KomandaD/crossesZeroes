@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang = "ru">
+	<head>
+		<meta charset = "UTF-8">
+		<title>Крестики-нолики</title>
+		<style>
+			body {
+				background: url("oblozka.jpg") no-repeat center center fixed;
+				background-size: cover;
+				}
+			table.pole {
+				border:solid thin;
+				margin: 0 auto;			
+				}	
+			.pole td:hover {
+				background: url("mishen.png") no-repeat;
+			
+				}
+			.pole td, .pole tr{
+				border: solid thin green;
+				width: 150px;
+				height: 150px;			
+				}
+			img {
+				width: 150px;
+				height: 150px;
+				}
+		
+			div.shapka {
+				text-align: center;
+				}
+			#hodIgr1, #hodIgr2 {
+				border: dashed thin black; 
+				background: red;
+				}
+			div.tableLeft {
+			margin-left: 5%;
+				float: left;
+				width: 10%;
+				}
+			div.tableRight {
+				width: 10%;
+				float: right;
+				}				
+			div.tableCenter {
+				width: 70%;
+				float: left;
+				}
+				
+		</style>
+		<script>
+		var nichy = 0;
+			var Pobeda1 = 0;
+			var Pobeda2 = 0;
+			var Rau = 1;
+			var hod = false;
+			var rezus;
+			window.onload = init;
+			function init() {
+				Pob1 = document.getElementById("pob1");
+				Pob2 = document.getElementById("pob2");
+				Raund = document.getElementById("raund");
+				HodIgr1 = document.getElementById("hodIgr1");
+				HodIgr2 = document.getElementById("hodIgr2");
+				var images = document.getElementsByTagName("img");
+					for (var i = 0; i < images.length; i++) {
+						
+							//щелчок мыши на клетке
+							images[i].onclick = showAnswer;
+						console.log(images[i]);
+					}
+			}
+			
+			//Обработчик события щелчок мыши
+			function showAnswer(eventObj) {
+			
+			
+			//Если prover(eventObj) == true, то выполняем функцию boba(eventObj)
+			 if (prover(eventObj)) {
+				boba(eventObj);
+				}
+				//Здесь вызываем функцию окончания игры
+				rezultat();
+			};
+			
+			//Отображение крестик-нолик на поле
+			function boba(eventObj) {
+				var image = eventObj.target;
+				if (hod) {
+					image.src = "nulik.png";
+					hod = false;
+					++nichy;
+					console.log(image);
+				} else if (!hod){
+					image.src = "kre.png";
+					hod = true;
+					console.log(image);
+					++nichy;
+					
+				}	
+				cheyHod();
+			};	
+			
+			//Проверяем есть ли в данной клетке крестик или нолик
+			function prover(eventObj) {
+			var prov = eventObj.target.src;
+			
+			//метод indexOf . Если в пути к рисунку нет слов kre и nolik, то возвращаем true
+			if (prov.indexOf("nulik") == -1 && prov.indexOf("kre") == -1) {
+			console.log(eventObj.target.src, eventObj.target.id);
+			return true;
+			}
+			};
+			//Смотрим кто победил и прибавляем ему победу
+			function rezultat() {
+			rezus = document.getElementsByTagName("img");
+					for (var i = 0; i < rezus.length; i++) {
+					console.log(rezus[i]);
+					}
+			if (rezus[0].src.indexOf("nulik") !== -1 && rezus[1].src.indexOf("nulik") !== -1 && rezus[2].src.indexOf("nulik") !== -1 ||
+				rezus[3].src.indexOf("nulik") !== -1 && rezus[4].src.indexOf("nulik") !== -1 && rezus[5].src.indexOf("nulik") !== -1 ||
+				rezus[6].src.indexOf("nulik") !== -1 && rezus[7].src.indexOf("nulik") !== -1 && rezus[8].src.indexOf("nulik") !== -1 ||
+				rezus[0].src.indexOf("nulik") !== -1 && rezus[3].src.indexOf("nulik") !== -1 && rezus[6].src.indexOf("nulik") !== -1 ||
+				rezus[1].src.indexOf("nulik") !== -1 && rezus[4].src.indexOf("nulik") !== -1 && rezus[7].src.indexOf("nulik") !== -1 ||
+				rezus[2].src.indexOf("nulik") !== -1 && rezus[5].src.indexOf("nulik") !== -1 && rezus[8].src.indexOf("nulik") !== -1 ||
+				rezus[0].src.indexOf("nulik") !== -1 && rezus[4].src.indexOf("nulik") !== -1 && rezus[8].src.indexOf("nulik") !== -1 ||
+				rezus[2].src.indexOf("nulik") !== -1 && rezus[4].src.indexOf("nulik") !== -1 && rezus[6].src.indexOf("nulik") !== -1) {
+				
+				alert("Победил игрок 2!");
+				++Pobeda2;
+				Pob2.innerHTML = Pobeda2;
+				podcshet();
+				console.log(Pobeda2);
+				} else if 
+				(rezus[0].src.indexOf("kre") !== -1 && rezus[1].src.indexOf("kre") !== -1 && rezus[2].src.indexOf("kre") !== -1 ||
+				rezus[3].src.indexOf("kre") !== -1 && rezus[4].src.indexOf("kre") !== -1 && rezus[5].src.indexOf("kre") !== -1 ||
+				rezus[6].src.indexOf("kre") !== -1 && rezus[7].src.indexOf("kre") !== -1 && rezus[8].src.indexOf("kre") !== -1 ||
+				rezus[0].src.indexOf("kre") !== -1 && rezus[3].src.indexOf("kre") !== -1 && rezus[6].src.indexOf("kre") !== -1 ||
+				rezus[1].src.indexOf("kre") !== -1 && rezus[4].src.indexOf("kre") !== -1 && rezus[7].src.indexOf("kre") !== -1 ||
+				rezus[2].src.indexOf("kre") !== -1 && rezus[5].src.indexOf("kre") !== -1 && rezus[8].src.indexOf("kre") !== -1 ||
+				rezus[0].src.indexOf("kre") !== -1 && rezus[4].src.indexOf("kre") !== -1 && rezus[8].src.indexOf("kre") !== -1 ||
+				rezus[2].src.indexOf("kre") !== -1 && rezus[4].src.indexOf("kre") !== -1 && rezus[6].src.indexOf("kre") !== -1) {
+				
+				alert("Победил игрок 1!");
+				++Pobeda1;
+				Pob1.innerHTML = Pobeda1;
+				console.log(Pobeda1);
+				podcshet();
+				} else if (nichy >= 9) {
+				alert("Ничья!");
+					podcshet();
+				}
+			};
+			//Здесь прибавляем раунд
+			function podcshet() {
+				++Rau;
+				Raund.innerHTML = Rau;
+				for (var i = 0; i < rezus.length; i++) {
+					rezus[i].src = "";
+					nichy = 0;
+					}
+			};
+			
+			function cheyHod() {
+				if(!hod) {
+					HodIgr2.setAttribute("style", "display: none;");
+					HodIgr1.setAttribute("style", "");
+				} else {
+					HodIgr1.setAttribute("style", "display: none;");
+					HodIgr2.setAttribute("style", "");
+				}
+			};
+			console.log(rezus);
+		</script>
+	</head>
+	<body>
+	<div class = "shapka">
+	<h1>Игра <br>"Крестики и нолики"</h1>
+	<p>Раунд <span id = "raund">1</span></p>
+	</div>
+	<div class = "tableLeft">
+	<table>
+		<tr>
+			<td>Игрок 1</td>
+		</tr>
+		<tr>
+			<td>Побед: <span id = "pob1">0</span></td>
+		</tr>
+		<tr>
+			<td id = "hodIgr1">Ваш ход</td>
+		</tr>
+	</table>	
+	</div>
+	<div class = "tableCenter">
+	<!--Создаю таблицу-->
+		<table class = "pole">
+			<!--Первая строка-->
+			<tr>
+				<td><img src = "" id = "0"></td><td><img src = "" id = "1"></td><td><img src = "" id = "2"></td>
+			</tr>
+			<!--Вторая строка-->
+			<tr>
+				<td><img src = "" id = "3"></td><td><img src = "" id = "4"></td><td><img src = "" id = "5"></td>
+			</tr>
+			<!--Третья строка-->
+			<tr>
+				<td><img src = "" id = "6"></td><td><img src = "" id = "7"></td><td><img src = "" id = "8"></td>
+			</tr>
+		</table>
+		</div>
+		<div class = "tableRight">
+		<table>
+		<tr>
+			<td>Игрок 2</td>
+		</tr>
+		<tr>
+			<td>Побед: <span id = "pob2">0</span></td>
+		</tr>
+		<tr>
+			<td id = "hodIgr2" style = "display: none;">Ваш ход</td>
+		</tr>
+	</table>
+	</div>
+	</body>
+</html>		
