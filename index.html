@@ -33,14 +33,15 @@
 				border: dashed thin black; 
 				background: red;
 				}
-			div.tableLeft {
+			div.tableLeft {font-size: 35px;
 			margin-left: 5%;
 				float: left;
 				width: 10%;
 				}
-			div.tableRight {
+			div.tableRight {font-size: 35px;
 				width: 10%;
 				float: right;
+                margin-right: 5%;
 				}				
 			div.tableCenter {
 				width: 70%;
@@ -156,7 +157,7 @@
 				++Rau;
 				Raund.innerHTML = Rau;
 				for (var i = 0; i < rezus.length; i++) {
-					rezus[i].src = "";
+					rezus[i].removeAttribute("src");
 					nichy = 0;
 					}
 			};
@@ -196,15 +197,15 @@
 		<table class = "pole">
 			<!--Первая строка-->
 			<tr>
-				<td><img src = "" id = "0"></td><td><img src = "" id = "1"></td><td><img src = "" id = "2"></td>
+				<td><img  id = "0"></td><td><img id = "1"></td><td><img id = "2"></td>
 			</tr>
 			<!--Вторая строка-->
 			<tr>
-				<td><img src = "" id = "3"></td><td><img src = "" id = "4"></td><td><img src = "" id = "5"></td>
+				<td><img id = "3"></td><td><img  id = "4"></td><td><img id = "5"></td>
 			</tr>
 			<!--Третья строка-->
 			<tr>
-				<td><img src = "" id = "6"></td><td><img src = "" id = "7"></td><td><img src = "" id = "8"></td>
+				<td><img id = "6"></td><td><img id = "7"></td><td><img id = "8"></td>
 			</tr>
 		</table>
 		</div>
